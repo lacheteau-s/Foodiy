@@ -1,4 +1,7 @@
-﻿namespace Foodiy.App;
+﻿using Foodiy.App.ViewModels;
+using Foodiy.App.Views;
+
+namespace Foodiy.App;
 
 public static class MauiProgram
 {
@@ -7,6 +10,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.ConfigureServices()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -14,5 +18,15 @@ public static class MauiProgram
 			});
 
 		return builder.Build();
+	}
+
+	public static MauiAppBuilder ConfigureServices(this MauiAppBuilder builder)
+	{
+		var services = builder.Services;
+
+		services.AddTransient<HomePage>();
+		services.AddSingleton<HomePageViewModel>();
+
+		return builder;
 	}
 }
