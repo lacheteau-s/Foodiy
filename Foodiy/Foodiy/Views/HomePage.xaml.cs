@@ -1,4 +1,4 @@
-﻿namespace Foodiy;
+﻿namespace Foodiy.Views;
 
 public partial class HomePage : ContentPage
 {
