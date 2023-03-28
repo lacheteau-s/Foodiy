@@ -10,6 +10,7 @@
         <Button
             AbsoluteLayout.LayoutFlags="PositionProportional"
             AbsoluteLayout.LayoutBounds="1,1,50,50"
+            Command="{Binding AddNewRecipeCommand}"
             Text="{x:Static constants:MDICodes.Plus}"
             TextColor="White"
             FontFamily="MDI"

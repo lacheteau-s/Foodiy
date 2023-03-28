@@ -1,9 +1,14 @@
-﻿namespace Foodiy;
+﻿using Foodiy.Views;
+
+namespace Foodiy;
 
 public partial class AppShell : Shell
 {
 	public AppShell()
 	{
 		InitializeComponent();
-	}
+
+		Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+		Routing.RegisterRoute(nameof(NewRecipePage), typeof(NewRecipePage));
+    }
 }
