@@ -28,6 +28,9 @@ public static class MauiProgram
 		services.AddTransient<HomePage>();
 		services.AddSingleton<HomePageViewModel>();
 
+		services.AddTransient<NewRecipePage>();
+		services.AddTransient<NewRecipePageViewModel>();
+
 		return builder;
 	}
 }
