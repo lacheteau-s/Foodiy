@@ -1,6 +1,11 @@
-﻿namespace Foodiy.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public class NewRecipePageViewModel
+namespace Foodiy.ViewModels;
+
+public partial class NewRecipePageViewModel : ObservableObject
 {
     public string Title => "New recipe";
+
+    [ObservableProperty]
+    private string _name = string.Empty;
 }
