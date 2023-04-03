@@ -1,22 +1,13 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.Input;
 
 namespace Foodiy.ViewModels
 {
-    public partial class HomePageViewModel : ObservableObject
+    public partial class HomePageViewModel
     {
-        [ObservableProperty]
-        [NotifyPropertyChangedFor(nameof(CounterText))]
-        private int _count = 0;
-
-        public string CounterText => Count == 0 ? "Click me" : $"Clicked {Count} time{(Count > 1 ? "s" : "")} ";
-
         [RelayCommand]
-        public void IncrementCounter()
+        private async Task AddNewRecipe()
         {
-            Count++;
-
-            SemanticScreenReader.Announce(CounterText);
+            await Shell.Current.GoToAsync("NewRecipePage");
         }
     }
 }
