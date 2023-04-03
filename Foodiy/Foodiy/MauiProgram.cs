@@ -1,4 +1,6 @@
-﻿using Foodiy.ViewModels;
+﻿using CommunityToolkit.Maui;
+using Foodiy.Repositories;
+using Foodiy.ViewModels;
 using Foodiy.Views;
 
 namespace Foodiy;
@@ -11,6 +13,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.ConfigureServices()
+			.UseMauiCommunityToolkit()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -30,6 +33,8 @@ public static class MauiProgram
 
 		services.AddTransient<NewRecipePage>();
 		services.AddTransient<NewRecipePageViewModel>();
+
+		services.AddSingleton<RecipeRepository>();
 
 		return builder;
 	}
