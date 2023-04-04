@@ -3,9 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:constants="clr-namespace:Foodiy.Constants"
              xmlns:viewModels="clr-namespace:Foodiy.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Foodiy.Views.NewRecipePage"
              x:DataType="viewModels:NewRecipePageViewModel"
              Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:IsStringNotNullOrWhiteSpaceConverter x:Key="IsStringNotNullOrWhiteSpaceConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <VerticalStackLayout
         Margin="10">
@@ -54,6 +61,12 @@
             </VerticalStackLayout>
 
         </Border>
+        
+        <Button
+            Command="{Binding SaveRecipeCommand}"
+            IsEnabled="{Binding Name, Converter={StaticResource IsStringNotNullOrWhiteSpaceConverter}}"
+            Text="Save" />
+        
     </VerticalStackLayout>
 
 </ContentPage>

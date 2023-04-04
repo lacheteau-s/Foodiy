@@ -1,25 +1,50 @@
 ﻿using Foodiy.Models;
+using SQLite;
 
 namespace Foodiy.Repositories
 {
     public class RecipeRepository
     {
-        private static readonly List<RecipeModel> _recipes = new()
-        {
-            new RecipeModel(1, "Recipe 1"),
-            new RecipeModel(2, "Recipe 2")
-        };
+        private readonly SQLiteAsyncConnection _connection;
 
-        public IEnumerable<RecipeModel> GetRecipes() => _recipes.ToList();
+        private readonly Task _initialize;
 
-        public void AddRecipe(RecipeModel recipe)
+        public RecipeRepository(SQLiteAsyncConnection connection)
         {
-            _recipes.Add(recipe);
+             _connection = connection ?? throw new ArgumentNullException(nameof(connection));
+
+            _initialize = Initialize();
         }
 
-        public void RemoveRecipe(RecipeModel recipe)
+        private async Task Initialize()
         {
-            _recipes.Remove(recipe);
+            if (_initialize?.IsCompleted ?? false) return;
+
+            await _connection.CreateTableAsync<RecipeModel>();
+        }
+
+        public async Task<IEnumerable<RecipeModel>> GetRecipes()
+        {
+            await _initialize;
+
+            return await _connection.Table<RecipeModel>().ToListAsync();
+        }
+
+        public async Task AddRecipe(string name)
+        {
+            await _initialize;
+
+            await _connection.InsertAsync(new RecipeModel
+            {
+                Name = name
+            });
+        }
+
+        public async Task RemoveRecipe(int id)
+        {
+            await _initialize;
+
+            await _connection.DeleteAsync<RecipeModel>(id);
         }
     }
 }

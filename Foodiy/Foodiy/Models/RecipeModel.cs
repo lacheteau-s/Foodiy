@@ -1,5 +1,11 @@
-﻿namespace Foodiy.Models;
+﻿using SQLite;
 
-public record RecipeModel(
-    int Id,
-    string Name);
+namespace Foodiy.Models;
+
+public record RecipeModel
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; init; }
+
+    public string Name { get; init; }
+}

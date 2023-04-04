@@ -2,6 +2,7 @@
 using Foodiy.Repositories;
 using Foodiy.ViewModels;
 using Foodiy.Views;
+using SQLite;
 
 namespace Foodiy;
 
@@ -33,6 +34,14 @@ public static class MauiProgram
 
 		services.AddTransient<NewRecipePage>();
 		services.AddTransient<NewRecipePageViewModel>();
+
+		services.AddSingleton(sp =>
+		{
+			var dbPath = Path.Combine(FileSystem.AppDataDirectory, "foodiy.db3");
+			var flags = SQLiteOpenFlags.Create | SQLiteOpenFlags.ReadWrite;
+
+			return new SQLiteAsyncConnection(dbPath, flags);
+		});
 
 		services.AddSingleton<RecipeRepository>();
 
