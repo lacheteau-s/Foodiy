@@ -1,4 +1,6 @@
-﻿namespace Foodiy.Api.Configuration;
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Foodiy.Api.Configuration;
 
 public static class Startup
 {
@@ -8,7 +10,10 @@ public static class Startup
 
         // Add services to the container.
 
-        services.AddControllers();
+        services.AddControllers(options =>
+        {
+            options.Conventions.Add(new RouteConvention(new RouteAttribute("/api")));
+        });
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
