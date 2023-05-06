@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Foodiy.Api.Configuration;
 
@@ -17,6 +18,8 @@ public static class Startup
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+
+        builder.Host.UseSerilog();
 
         return builder;
     }
