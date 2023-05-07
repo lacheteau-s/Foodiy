@@ -19,7 +19,7 @@ public static class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
-        builder.Host.UseSerilog();
+        builder.Host.UseSerilog((context, config) => config.Configure());
 
         return builder;
     }
