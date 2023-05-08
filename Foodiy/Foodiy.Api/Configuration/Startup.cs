@@ -33,6 +33,8 @@ public static class Startup
             app.UseSwaggerUI();
         }
 
+        app.UseSerilogRequestLogging();
+
         app.UseHttpsRedirection();
 
         app.UseAuthorization();
