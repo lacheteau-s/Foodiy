@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace Foodiy.Api.Configuration;
 
@@ -18,6 +19,8 @@ public static class Startup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
 
+        builder.Host.UseSerilog((context, config) => config.Configure());
+
         return builder;
     }
 
@@ -29,6 +32,8 @@ public static class Startup
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseSerilogRequestLogging();
 
         app.UseHttpsRedirection();
 
