@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Foodiy.Data;
+using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
 namespace Foodiy.Api.Configuration;
@@ -10,6 +11,7 @@ public static class Startup
         var services = builder.Services;
 
         // Add services to the container.
+        services.AddSingleton<IDatabaseManager>(CreateDatabaseManager);
 
         services.AddControllers(options =>
         {
@@ -42,5 +44,13 @@ public static class Startup
         app.MapControllers();
 
         return app;
+    }
+
+    private static IDatabaseManager CreateDatabaseManager(IServiceProvider sp)
+    {
+        var connectionString = sp.GetRequiredService<IConfiguration>().GetConnectionString("Database");
+        var logger = sp.GetRequiredService<ILogger<DatabaseManager>>();
+
+        return new DatabaseManager(connectionString, logger);
     }
 }
