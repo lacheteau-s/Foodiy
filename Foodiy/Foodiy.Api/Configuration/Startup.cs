@@ -1,6 +1,7 @@
 ﻿using Foodiy.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.FileProviders;
 using Serilog;
 
 namespace Foodiy.Api.Configuration;
@@ -51,7 +52,9 @@ public static class Startup
     {
         var connectionString = sp.GetRequiredService<IConfiguration>().GetConnectionString("Database");
         var logger = sp.GetRequiredService<ILogger<DatabaseManager>>();
+        var env = sp.GetRequiredService<IWebHostEnvironment>();
+        var fileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "SQL"));
 
-        return new DatabaseManager(SqlClientFactory.Instance, connectionString, logger);
+        return new DatabaseManager(SqlClientFactory.Instance, connectionString, fileProvider, logger);
     }
 }
