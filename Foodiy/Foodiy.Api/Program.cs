@@ -1,11 +1,12 @@
 using Foodiy.Api.Configuration;
+using Foodiy.Data;
 using Serilog;
 
 namespace Foodiy.Api;
 
 public class Program
 {
-    public static void Main(string[] args)
+    public async static Task Main(string[] args)
     {
         Log.Logger = new LoggerConfiguration()
             .Configure()
@@ -21,9 +22,13 @@ public class Program
                 .Build()
                 .ConfigureMiddlewares();
 
+            var dbManager = app.Services.GetRequiredService<IDatabaseManager>();
+
+            await dbManager.InitializeDatabase();
+
             Log.Information("Application running");
 
-            app.Run();
+            await app.RunAsync();
         }
         catch (Exception ex)
         {

@@ -1,5 +1,6 @@
 ﻿using Foodiy.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Serilog;
 
 namespace Foodiy.Api.Configuration;
@@ -51,6 +52,6 @@ public static class Startup
         var connectionString = sp.GetRequiredService<IConfiguration>().GetConnectionString("Database");
         var logger = sp.GetRequiredService<ILogger<DatabaseManager>>();
 
-        return new DatabaseManager(connectionString, logger);
+        return new DatabaseManager(SqlClientFactory.Instance, connectionString, logger);
     }
 }

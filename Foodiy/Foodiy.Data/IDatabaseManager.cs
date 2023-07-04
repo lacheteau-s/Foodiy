@@ -2,4 +2,5 @@
 
 public interface IDatabaseManager
 {
+    Task InitializeDatabase(CancellationToken cancellationToken = default);
 }
