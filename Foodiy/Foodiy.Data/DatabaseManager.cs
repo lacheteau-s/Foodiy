@@ -19,6 +19,7 @@ public class DatabaseManager : IDatabaseManager
     private const string _databaseExistsQuery = "SELECT DB_ID(@dbName)";
     private const string _createDatabaseQuery = "EXEC('CREATE DATABASE ' + @dbName)";
     private const string _getVersionQuery = "SELECT MAX(version) FROM schema_version";
+    private const string _insertVersionQuery = "INSERT INTO schema_version VALUES(@version, @file_name, @update_date)";
 
     public DatabaseManager(
         DbProviderFactory dbProviderFactory,
@@ -39,9 +40,11 @@ public class DatabaseManager : IDatabaseManager
         await CreateDatabaseIfNotExists(cancellationToken);
 
         var currentVersion = await TryGetCurrentVersion(cancellationToken);
+        var isUpToDate = CheckDatabaseVersion(currentVersion);
 
-        CheckDatabaseVersion(currentVersion);
-    
+        if (!isUpToDate)
+            await Update(currentVersion, cancellationToken);
+
         _logger.LogInformation("Database initialized");
     }
 
@@ -85,7 +88,7 @@ public class DatabaseManager : IDatabaseManager
         }
     }
 
-    private void CheckDatabaseVersion(int? currentVersion)
+    private bool CheckDatabaseVersion(int? currentVersion)
     {
         var expectedVersion = GetScripts().Select(x => x.Version).LastOrDefault(-1);
 
@@ -100,6 +103,36 @@ public class DatabaseManager : IDatabaseManager
 
         if (currentVersion > expectedVersion)
             throw new InvalidOperationException($"Database version ({currentVersion}) is ahead of target ({expectedVersion}). The application was likely downgraded.");
+        
+        return currentVersion == expectedVersion;
+    }
+
+    private async Task Update(int? currentVersion, CancellationToken cancellationToken)
+    {
+        currentVersion ??= -1;
+
+        await using var connection = await CreateConnection(_connectionString, cancellationToken);
+
+        _logger.LogInformation("Updating database");
+
+        foreach (var script in GetScripts().Where(x => x.Version > currentVersion))
+        {
+            if (script.Version - currentVersion > 1)
+                throw new InvalidOperationException($"Missing script for version {currentVersion + 1}");
+
+            var query = await File.ReadAllTextAsync(script.FileInfo.PhysicalPath!, cancellationToken);
+
+            await connection.ExecuteAsync(query);
+            await connection.ExecuteAsync(
+                _insertVersionQuery,
+                new { version = script.Version, file_name = script.FileInfo.Name, update_date = DateTime.UtcNow });
+
+            ++currentVersion;
+
+            _logger.LogInformation("Applied script {file}", script.FileInfo.PhysicalPath);
+        }
+
+        _logger.LogInformation("Database is up to date. Version: {currentVersion}", currentVersion);
     }
 
     private IEnumerable<(int Version, IFileInfo FileInfo)> GetScripts()
