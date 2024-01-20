@@ -6,45 +6,13 @@
              x:Class="Foodiy.App.Views.HomePage"
              x:DataType="viewModels:HomePageViewModel">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="{Binding CounterText, Mode=OneWay}"
-                SemanticProperties.Hint="Count the number of times you click"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="{x:Static constants:MDICodes.Plus}"
-                FontFamily="MDI"
-                SemanticProperties.Hint="Increment the click counter"
-                Command="{Binding IncrementCounterCommand}"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
+    <CollectionView
+        ItemsSource="{Binding Recipes}">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Label Text="{Binding}" />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 
 </ContentPage>
