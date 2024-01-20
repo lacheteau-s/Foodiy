@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Foodiy.App.Stores;
 
 namespace Foodiy.App.ViewModels;
 
@@ -9,17 +10,6 @@ public partial class HomePageViewModel : ObservableObject
 
     public HomePageViewModel()
     {
-        Recipes = new[]
-        {
-            "Chilli con carne",
-            "Burritos",
-            "Salmon with avocado salsa",
-            "Tex-Mex chicken and rice",
-            "Mac & cheese",
-            "Banana bread muffins",
-            "Pasta al pesto",
-            "Mushrooms omelet",
-            "Overnight oats"
-        };
+        Recipes = RecipeStore.GetRecipes();
     }
 }
