@@ -6,7 +6,8 @@
              xmlns:models="clr-namespace:Foodiy.App.Models"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="Foodiy.App.Views.HomePage"
-             x:DataType="viewModels:HomePageViewModel">
+             x:DataType="viewModels:HomePageViewModel"
+             BackgroundColor="WhiteSmoke">
 
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -15,7 +16,17 @@
     </ContentPage.Behaviors>
 
     <CollectionView
-        ItemsSource="{Binding Recipes}">
+        ItemsSource="{Binding Recipes}"
+        Margin="5">
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout
+                Orientation="Vertical"
+                Span="2"
+                HorizontalItemSpacing="5"
+                VerticalItemSpacing="5" />
+        </CollectionView.ItemsLayout>
+        
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:RecipeModel">
                 <Label Text="{Binding Name}" />
