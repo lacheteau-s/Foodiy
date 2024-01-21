@@ -1,17 +1,14 @@
-﻿namespace Foodiy.App.Stores;
+﻿using System.Text.Json;
+
+namespace Foodiy.App.Stores;
 
 public class RecipeStore
 {
-    public static IEnumerable<string> GetRecipes() => new[]
+    public static async Task<IEnumerable<string>> GetRecipesAsync()
     {
-        "Chilli con carne",
-        "Burritos",
-        "Salmon with avocado salsa",
-        "Tex mex chicken and rice",
-        "Mac & cheese",
-        "Banana bread muffins",
-        "Pasta al pesto",
-        "Mushrooms omelet",
-        "Overnight oats"
-    };
+        var json = await FileSystem.OpenAppPackageFileAsync("recipes.json");
+        var recipes = await JsonSerializer.DeserializeAsync<IEnumerable<string>>(json);
+
+        return recipes!; // TODO: null check when fetching from API;
+    }
 }

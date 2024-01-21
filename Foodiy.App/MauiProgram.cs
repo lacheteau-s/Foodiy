@@ -1,4 +1,5 @@
-﻿using Foodiy.App.ViewModels;
+﻿using CommunityToolkit.Maui;
+using Foodiy.App.ViewModels;
 using Foodiy.App.Views;
 
 namespace Foodiy.App;
@@ -10,6 +11,7 @@ public static class MauiProgram
 		var builder = MauiApp.CreateBuilder();
 		builder
 			.UseMauiApp<App>()
+			.UseMauiCommunityToolkit()
 			.ConfigureServices()
 			.ConfigureFonts(fonts =>
 			{

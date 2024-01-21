@@ -6,10 +6,17 @@ namespace Foodiy.App.ViewModels;
 
 public partial class HomePageViewModel : ObservableObject
 {
-    public IEnumerable<string> Recipes { get; init; }
+    [ObservableProperty]
+    private IEnumerable<string> _recipes;
 
     public HomePageViewModel()
     {
-        Recipes = RecipeStore.GetRecipes();
+        _recipes = Enumerable.Empty<string>();
+    }
+
+    [RelayCommand]
+    public async Task InitializeAsync()
+    {
+        Recipes = await RecipeStore.GetRecipesAsync();
     }
 }
