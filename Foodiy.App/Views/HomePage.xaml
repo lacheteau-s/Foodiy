@@ -29,7 +29,24 @@
         
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:RecipeModel">
-                <Label Text="{Binding Name}" />
+                <Border StrokeShape="RoundRectangle 7">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="30" />
+                        </Grid.RowDefinitions>
+                        <Image
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Source="{Binding ThumbnailUrl}"
+                            Aspect="AspectFill" />
+                        <Label
+                            Grid.Row="1"
+                            Text="{Binding Name}"
+                            VerticalTextAlignment="Center"
+                            HorizontalTextAlignment="Center" />
+                    </Grid>
+                </Border>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
