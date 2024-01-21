@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Foodiy.App.Stores;
 using Foodiy.App.ViewModels;
 using Foodiy.App.Views;
 
@@ -29,6 +30,8 @@ public static class MauiProgram
 
 		services.AddTransient<HomePage>();
 		services.AddSingleton<HomePageViewModel>();
+
+		services.AddSingleton<RecipeStore>();
 
 		return builder;
 	}
