@@ -1,10 +1,11 @@
-﻿using System.Text.Json;
+﻿using Foodiy.App.Models;
+using System.Text.Json;
 
 namespace Foodiy.App.Stores;
 
 public class RecipeStore
 {
-    private IEnumerable<string> _recipes = Enumerable.Empty<string>();
+    private IEnumerable<RecipeModel> _recipes = Enumerable.Empty<RecipeModel>();
 
     private readonly Task _initializer;
 
@@ -19,12 +20,12 @@ public class RecipeStore
         if (_initializer?.IsCompleted ?? false) return;
 
         var json = await FileSystem.OpenAppPackageFileAsync("recipes.json");
-        var recipes = await JsonSerializer.DeserializeAsync<IEnumerable<string>>(json);
+        var recipes = await JsonSerializer.DeserializeAsync<IEnumerable<RecipeModel>>(json);
 
         _recipes = recipes!; // TODO: null check when fetching from API;
     }
 
-    public async Task<IEnumerable<string>> GetRecipesAsync()
+    public async Task<IEnumerable<RecipeModel>> GetRecipesAsync()
     {
         await _initializer;
 

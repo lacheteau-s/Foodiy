@@ -1,11 +1,38 @@
 [
-  "Chilli con carne",
-  "Burritos",
-  "Salmon with avocado salsa",
-  "Tex mex chicken and rice",
-  "Mac & cheese",
-  "Banana bread muffins",
-  "Pasta al pesto",
-  "Mushrooms omelet",
-  "Overnight oats"
+  {
+    "Name": "Chilli con carne",
+    "ThumbnailUrl": "https://assets.tmecosys.com/image/upload/t_web600x528/img/recipe/ras/Assets/a0e2c09c-7fe1-47e5-b4df-bfa450a981e8/Derivates/40dc6435-5651-497e-9a69-3f30fa04c133.jpg"
+  },
+  {
+    "Name": "Burritos",
+    "ThumbnailUrl": "https://www.allrecipes.com/thmb/p1e_qhx-A0-21dZDxFyv1zBb-Zw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8538304_Chicken-Fajita-Burrito_thedailygourmet_4x3-d381424d6949448596ef3dc66ce5712b.jpg"
+  },
+  {
+    "Name": "Salmon with avocado salsa",
+    "ThumbnailUrl": "https://i.ytimg.com/vi/oY3S6acQ9lE/maxresdefault.jpg"
+  },
+  {
+    "Name": "Tex mex chicken and rice",
+    "ThumbnailUrl": "https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/9252_sfs-tex-mex-skillet-supper-005-275466"
+  },
+  {
+    "Name": "Mac & cheese",
+    "ThumbnailUrl": "https://www.lifeasastrawberry.com/wp-content/uploads/2019/11/Garlic-Mushroom-Mac-and-Cheese.jpg"
+  },
+  {
+    "Name": "Banana bread muffins",
+    "ThumbnailUrl": "https://www.bunsenburnerbakery.com/wp-content/uploads/2020/02/banana-bread-muffins-26-square-720x720.jpg"
+  },
+  {
+    "Name": "Pasta al pesto",
+    "ThumbnailUrl": "https://www.fattoincasadabenedetta.it/wp-content/uploads/2022/07/AdobeStock_235021478-scaled.jpg"
+  },
+  {
+    "Name": "Mushrooms omelet",
+    "ThumbnailUrl": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/06/mushroom-omelette-recipe.jpg"
+  },
+  {
+    "Name": "Overnight oats",
+    "ThumbnailUrl": "https://detoxinista.com/wp-content/uploads/2021/05/banana-overnight-oats-recipe.jpg"
+  }
 ]
