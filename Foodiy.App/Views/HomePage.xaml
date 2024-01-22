@@ -32,17 +32,25 @@
                 <Border StrokeShape="RoundRectangle 7">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="70" />
-                            <RowDefinition Height="30" />
+                            <RowDefinition Height="60" />
+                            <RowDefinition Height="40" />
                         </Grid.RowDefinitions>
                         <Image
                             Grid.Row="0"
                             Grid.RowSpan="2"
                             Source="{Binding ThumbnailUrl}"
                             Aspect="AspectFill" />
+                        <Rectangle
+                            Grid.Row="0"
+                            Grid.RowSpan="2"
+                            BackgroundColor="Black"
+                            Opacity="0.4" />
                         <Label
                             Grid.Row="1"
                             Text="{Binding Name}"
+                            TextColor="White"
+                            FontSize="Small"
+                            Padding="5,0"
                             VerticalTextAlignment="Center"
                             HorizontalTextAlignment="Center" />
                     </Grid>
