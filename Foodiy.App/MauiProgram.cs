@@ -32,6 +32,8 @@ public static class MauiProgram
 
 		services.AddTransient<HomePage>();
 		services.AddSingleton<HomePageViewModel>();
+		services.AddTransient<RecipePage>();
+		services.AddTransient<RecipePageViewModel>();
 
 		services.AddSingleton<RecipeStore>();
 

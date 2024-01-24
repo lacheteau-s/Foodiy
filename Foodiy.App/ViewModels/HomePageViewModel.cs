@@ -27,6 +27,6 @@ public partial class HomePageViewModel : ObservableObject
     [RelayCommand]
     public async Task OpenRecipe(RecipeModel recipe)
     {
-        await Shell.Current.GoToAsync("Recipe");
+        await Shell.Current.GoToAsync(nameof(RecipePageViewModel));
     }
 }
