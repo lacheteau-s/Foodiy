@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Foodiy.App.Constants;
 using Foodiy.App.Models;
 using Foodiy.App.Stores;
 
@@ -27,6 +28,8 @@ public partial class HomePageViewModel : ObservableObject
     [RelayCommand]
     public async Task OpenRecipe(RecipeModel recipe)
     {
-        await Shell.Current.GoToAsync(nameof(RecipePageViewModel));
+        var param = new Dictionary<string, object> { [Parameters.RecipeModelParam] = recipe };
+
+        await Shell.Current.GoToAsync(nameof(RecipePageViewModel), param);
     }
 }
