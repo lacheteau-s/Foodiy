@@ -12,6 +12,9 @@ public partial class RecipePageViewModel : ObservableObject, IQueryAttributable
     [ObservableProperty]
     private string _recipeImageUrl = string.Empty;
 
+    [ObservableProperty]
+    private IEnumerable<string> _ingredients = Enumerable.Empty<string>();
+
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         var recipe = query[Parameters.RecipeModelParam] as RecipeModel;
@@ -20,6 +23,7 @@ public partial class RecipePageViewModel : ObservableObject, IQueryAttributable
         {
             RecipeName = recipe.Name;
             RecipeImageUrl = recipe.ThumbnailUrl;
+            Ingredients = recipe.Ingredients.Select(x => $"{x.Quantity} {x.Name}").ToList();
         }
     }
 }
