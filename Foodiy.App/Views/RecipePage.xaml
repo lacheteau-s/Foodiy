@@ -5,40 +5,42 @@
              x:Class="Foodiy.App.Views.RecipePage"
              x:DataType="viewModels:RecipePageViewModel"
              Title="{Binding RecipeName}">
-    <VerticalStackLayout Spacing="10">
-        <!-- TODO: handle when image is loading or no image is specified -->
-        <Image
-            Source="{Binding RecipeImageUrl}"
-            Aspect="AspectFill"
-            HeightRequest="200"
-            HorizontalOptions="Fill" />
-        <Label
-            Text="Ingredients"
-            FontSize="Medium"
-            FontAttributes="Bold"
-            Margin="15,0" />
-        <VerticalStackLayout
-            BindableLayout.ItemsSource="{Binding Ingredients}"
-            Margin="15,0">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding}" />
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <!-- TODO: handle when image is loading or no image is specified -->
+            <Image
+                Source="{Binding RecipeImageUrl}"
+                Aspect="AspectFill"
+                HeightRequest="200"
+                HorizontalOptions="Fill" />
+            <Label
+                Text="Ingredients"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Margin="15,0" />
+            <VerticalStackLayout
+                BindableLayout.ItemsSource="{Binding Ingredients}"
+                Margin="15,0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Label
+                Text="Steps"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Margin="15,0" />
+            <VerticalStackLayout
+                BindableLayout.ItemsSource="{Binding Steps}"
+                Margin="15,0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
         </VerticalStackLayout>
-        <Label
-            Text="Steps"
-            FontSize="Medium"
-            FontAttributes="Bold"
-            Margin="15,0" />
-        <VerticalStackLayout
-            BindableLayout.ItemsSource="{Binding Steps}"
-            Margin="15,0">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <Label Text="{Binding}" />
-                </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </VerticalStackLayout>
-    </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
