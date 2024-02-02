@@ -26,5 +26,19 @@
                 </DataTemplate>
             </BindableLayout.ItemTemplate>
         </VerticalStackLayout>
+        <Label
+            Text="Steps"
+            FontSize="Medium"
+            FontAttributes="Bold"
+            Margin="15,0" />
+        <VerticalStackLayout
+            BindableLayout.ItemsSource="{Binding Steps}"
+            Margin="15,0">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label Text="{Binding}" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -60,46 +60,71 @@
       {
         "Name": "Parsley"
       }
+    ],
+    "Steps": [
+      "Heat the olive oil in a pot",
+      "Chop and add the onion to the pot",
+      "Chop and add the garlic to the pot",
+      "Add the ground beef and fry until mostly brown",
+      "Mix together the cumin, oregano, paprika, cayenne pepper, garlic powder and onion powder",
+      "Add the mix to the pot and mix well",
+      "Add the tomato paste",
+      "Cook and stir for about 2 minutes",
+      "Pour crushed tomatoes into the pot and mix well",
+      "Add the beef stock and mix well",
+      "Add the kidney beans and mix well",
+      "Add salt and pepper to taste",
+      "Add a handful of parsley",
+      "Bring to a simmer over low heat",
+      "Stir occasionally for about 20 minutes"
     ]
   },
   {
     "Name": "Burritos",
     "ThumbnailUrl": "https://www.allrecipes.com/thmb/p1e_qhx-A0-21dZDxFyv1zBb-Zw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8538304_Chicken-Fajita-Burrito_thedailygourmet_4x3-d381424d6949448596ef3dc66ce5712b.jpg",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   },
   {
     "Name": "Salmon with avocado salsa",
     "ThumbnailUrl": "https://i.ytimg.com/vi/oY3S6acQ9lE/maxresdefault.jpg",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   },
   {
     "Name": "Tex mex chicken and rice",
     "ThumbnailUrl": "https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/9252_sfs-tex-mex-skillet-supper-005-275466",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   },
   {
     "Name": "Mac & cheese",
     "ThumbnailUrl": "https://www.lifeasastrawberry.com/wp-content/uploads/2019/11/Garlic-Mushroom-Mac-and-Cheese.jpg",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   },
   {
     "Name": "Banana bread muffins",
     "ThumbnailUrl": "https://www.bunsenburnerbakery.com/wp-content/uploads/2020/02/banana-bread-muffins-26-square-720x720.jpg",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   },
   {
     "Name": "Pasta al pesto",
     "ThumbnailUrl": "https://www.fattoincasadabenedetta.it/wp-content/uploads/2022/07/AdobeStock_235021478-scaled.jpg",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   },
   {
     "Name": "Mushrooms omelet",
     "ThumbnailUrl": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/06/mushroom-omelette-recipe.jpg",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   },
   {
     "Name": "Overnight oats",
     "ThumbnailUrl": "https://detoxinista.com/wp-content/uploads/2021/05/banana-overnight-oats-recipe.jpg",
-    "Ingredients": []
+    "Ingredients": [],
+    "Steps": []
   }
 ]
