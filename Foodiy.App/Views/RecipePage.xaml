@@ -6,9 +6,11 @@
              x:DataType="viewModels:RecipePageViewModel"
              Title="{Binding RecipeName}">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <!-- TODO: handle when image is loading or no image is specified -->
+        <Image
+            Source="{Binding RecipeImageUrl}"
+            Aspect="AspectFill"
+            HeightRequest="200"
+            HorizontalOptions="Fill" />
     </VerticalStackLayout>
 </ContentPage>
