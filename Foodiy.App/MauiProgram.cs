@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Foodiy.App.Configuration;
 using Foodiy.App.Stores;
 using Foodiy.App.ViewModels;
 using Foodiy.App.Views;
@@ -13,6 +14,7 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
 			.UseMauiCommunityToolkit()
+			.ConfigureRouting()
 			.ConfigureServices()
 			.ConfigureFonts(fonts =>
 			{
@@ -30,6 +32,8 @@ public static class MauiProgram
 
 		services.AddTransient<HomePage>();
 		services.AddSingleton<HomePageViewModel>();
+		services.AddTransient<RecipePage>();
+		services.AddTransient<RecipePageViewModel>();
 
 		services.AddSingleton<RecipeStore>();
 
