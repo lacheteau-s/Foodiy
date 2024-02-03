@@ -1,12 +1,46 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Foodiy.App.ViewModels"
              x:Class="Foodiy.App.Views.RecipePage"
-             Title="RecipePage">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             x:DataType="viewModels:RecipePageViewModel"
+             Title="{Binding RecipeName}">
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <!-- TODO: handle when image is loading or no image is specified -->
+            <Image
+                Source="{Binding RecipeImageUrl}"
+                Aspect="AspectFill"
+                HeightRequest="200"
+                HorizontalOptions="Fill" />
+            <Label
+                Text="Ingredients"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Margin="15,0" />
+            <VerticalStackLayout
+                BindableLayout.ItemsSource="{Binding Ingredients}"
+                Margin="15,0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+            <Label
+                Text="Steps"
+                FontSize="Medium"
+                FontAttributes="Bold"
+                Margin="15,0" />
+            <VerticalStackLayout
+                BindableLayout.ItemsSource="{Binding Steps}"
+                Margin="15,0">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Label Text="{Binding}" />
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
