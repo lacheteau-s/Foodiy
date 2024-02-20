@@ -1,17 +1,30 @@
-﻿namespace Foodiy.Api.Services;
+﻿using Foodiy.Api.Models;
+using System.Text.Json;
+
+namespace Foodiy.Api.Services;
 
 public class RecipesService : IRecipesService
 {
-    private readonly IEnumerable<string> _recipes = new List<string>
+    public async Task<IEnumerable<RecipeModel>> GetRecipesAsync(CancellationToken cancellationToken = default)
     {
-        "Recipe 1",
-        "Recipe 2",
-        "Recipe 3",
-        "Recipe 4",
-        "Recipe 5",
-    };
+        var recipes = await LoadRecipesFromFileAsync(cancellationToken);
 
-    public IEnumerable<string> GetRecipes() => _recipes;
+        return recipes;
+    }
 
-    public string? GetRecipe(int id) => _recipes.ElementAtOrDefault(id);
+    public async Task<RecipeModel?> GetRecipeAsync(int id, CancellationToken cancellationToken = default)
+    {
+        var recipes = await LoadRecipesFromFileAsync(cancellationToken);
+        var recipe = recipes?.FirstOrDefault(x => x.Id == id);
+
+        return recipe;
+    }
+
+    private static async Task<IEnumerable<RecipeModel>> LoadRecipesFromFileAsync(CancellationToken cancellationToken = default)
+    {
+        using var stream = File.OpenRead("Data/recipes.json");
+        var recipes = await JsonSerializer.DeserializeAsync<IEnumerable<RecipeModel>>(stream, cancellationToken: cancellationToken);
+
+        return recipes ?? throw new IOException("Failed to load contents from recipes.json");
+    }
 }

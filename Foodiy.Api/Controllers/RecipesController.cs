@@ -1,4 +1,5 @@
-﻿using Foodiy.Api.Services;
+﻿using Foodiy.Api.Models;
+using Foodiy.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foodiy.Api.Controllers;
@@ -15,15 +16,17 @@ public class RecipesController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<string> GetRecipes()
+    public async Task<IEnumerable<RecipeModel>> GetRecipes(CancellationToken cancellationToken = default)
     {
-        return _recipesService.GetRecipes();
+        var recipes = await _recipesService.GetRecipesAsync(cancellationToken);
+
+        return recipes;
     }
 
     [HttpGet("{id}")]
-    public IActionResult GetRecipe(int id)
+    public async Task<IActionResult> GetRecipe(int id, CancellationToken cancellationToken = default)
     {
-        var recipe = _recipesService.GetRecipe(id);
+        var recipe = await _recipesService.GetRecipeAsync(id, cancellationToken);
 
         if (recipe == null)
             return NotFound();

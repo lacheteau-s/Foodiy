@@ -1,8 +1,10 @@
-﻿namespace Foodiy.Api.Services;
+﻿using Foodiy.Api.Models;
+
+namespace Foodiy.Api.Services;
 
 public interface IRecipesService
 {
-    IEnumerable<string> GetRecipes();
+    Task<IEnumerable<RecipeModel>> GetRecipesAsync(CancellationToken cancellationToken = default);
 
-    string? GetRecipe(int id);
+    Task<RecipeModel?> GetRecipeAsync(int id, CancellationToken cancellationToken = default);
 }
