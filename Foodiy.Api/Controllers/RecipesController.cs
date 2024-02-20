@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Foodiy.Api.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Foodiy.Api.Controllers;
 
@@ -6,25 +7,23 @@ namespace Foodiy.Api.Controllers;
 [ApiController]
 public class RecipesController : ControllerBase
 {
-    private readonly IEnumerable<string> _recipes = new List<string>
+    private readonly IRecipesService _recipesService;
+
+    public RecipesController(IRecipesService recipesService)
     {
-        "Recipe 1",
-        "Recipe 2",
-        "Recipe 3",
-        "Recipe 4",
-        "Recipe 5",
-    };
+        _recipesService = recipesService ?? throw new ArgumentNullException(nameof(recipesService));
+    }
 
     [HttpGet]
     public IEnumerable<string> GetRecipes()
     {
-        return _recipes;
+        return _recipesService.GetRecipes();
     }
 
     [HttpGet("{id}")]
     public IActionResult GetRecipe(int id)
     {
-        var recipe = _recipes.ElementAtOrDefault(id);
+        var recipe = _recipesService.GetRecipe(id);
 
         if (recipe == null)
             return NotFound();
