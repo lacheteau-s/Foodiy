@@ -1,6 +1,6 @@
 ﻿namespace Foodiy.Api.Models;
 
-public record RecipeModel(
+public record RecipeDetailsModel(
     int Id,
     string Name,
     string ThumbnailUrl,

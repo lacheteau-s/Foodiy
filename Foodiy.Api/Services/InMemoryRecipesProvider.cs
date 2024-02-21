@@ -14,9 +14,9 @@ public class InMemoryRecipesProvider : IRecipesProvider
         _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
     }
 
-    public async Task<IEnumerable<RecipeModel>> GetRecipesAsync(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<RecipeDetailsModel>> GetRecipesAsync(CancellationToken cancellationToken = default)
     {
-        if (_memoryCache.TryGetValue<IEnumerable<RecipeModel>>(_key, out var recipes))
+        if (_memoryCache.TryGetValue<IEnumerable<RecipeDetailsModel>>(_key, out var recipes))
             return recipes;
 
         recipes = await LoadRecipesFromFileAsync(cancellationToken);
@@ -24,10 +24,10 @@ public class InMemoryRecipesProvider : IRecipesProvider
         return _memoryCache.Set(_key, recipes);
     }
 
-    private static async Task<IEnumerable<RecipeModel>> LoadRecipesFromFileAsync(CancellationToken cancellationToken = default)
+    private static async Task<IEnumerable<RecipeDetailsModel>> LoadRecipesFromFileAsync(CancellationToken cancellationToken = default)
     {
         using var stream = File.OpenRead("Data/recipes.json");
-        var recipes = await JsonSerializer.DeserializeAsync<IEnumerable<RecipeModel>>(stream, cancellationToken: cancellationToken);
+        var recipes = await JsonSerializer.DeserializeAsync<IEnumerable<RecipeDetailsModel>>(stream, cancellationToken: cancellationToken);
 
         return recipes ?? throw new IOException("Failed to load contents from recipes.json");
     }

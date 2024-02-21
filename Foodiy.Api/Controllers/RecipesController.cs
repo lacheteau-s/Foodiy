@@ -16,7 +16,7 @@ public class RecipesController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<RecipeModel>> GetRecipes(CancellationToken cancellationToken = default)
+    public async Task<IEnumerable<RecipeSummaryModel>> GetRecipes(CancellationToken cancellationToken = default)
     {
         var recipes = await _recipesService.GetRecipesAsync(cancellationToken);
 
