@@ -1,0 +1,139 @@
+[
+  {
+    "Id": 0,
+    "Name": "Chilli con carne",
+    "ThumbnailUrl": "https://assets.tmecosys.com/image/upload/t_web600x528/img/recipe/ras/Assets/a0e2c09c-7fe1-47e5-b4df-bfa450a981e8/Derivates/40dc6435-5651-497e-9a69-3f30fa04c133.jpg",
+    "Ingredients": [
+      {
+        "Name": "Olive oil",
+        "Quantity": "1 tbsp"
+      },
+      {
+        "Name": "Onion",
+        "Quantity": "1/2"
+      },
+      {
+        "Name": "Garlic cloves",
+        "Quantity": "4"
+      },
+      {
+        "Name": "Ground beef",
+        "Quantity": "300 g"
+      },
+      {
+        "Name": "Cumin",
+        "Quantity": "4 g"
+      },
+      {
+        "Name": "Oregano",
+        "Quantity": "2 g"
+      },
+      {
+        "Name": "Paprika",
+        "Quantity": "1.6 g"
+      },
+      {
+        "Name": "Cayenne pepper",
+        "Quantity": "0.9 g"
+      },
+      {
+        "Name": "Tomato paste",
+        "Quantity": "9.3 g"
+      },
+      {
+        "Name": "Crushed tomatoes",
+        "Quantity": "266 g"
+      },
+      {
+        "Name": "Beef stock",
+        "Quantity": "64 g"
+      },
+      {
+        "Name": "Kidney beans",
+        "Quantity": "400 g"
+      },
+      {
+        "Name": "Salt"
+      },
+      {
+        "Name": "Pepper"
+      },
+      {
+        "Name": "Parsley"
+      }
+    ],
+    "Steps": [
+      "Heat the olive oil in a pot",
+      "Chop and add the onion to the pot",
+      "Chop and add the garlic to the pot",
+      "Add the ground beef and fry until mostly brown",
+      "Mix together the cumin, oregano, paprika, cayenne pepper, garlic powder and onion powder",
+      "Add the mix to the pot and mix well",
+      "Add the tomato paste",
+      "Cook and stir for about 2 minutes",
+      "Pour crushed tomatoes into the pot and mix well",
+      "Add the beef stock and mix well",
+      "Add the kidney beans and mix well",
+      "Add salt and pepper to taste",
+      "Add a handful of parsley",
+      "Bring to a simmer over low heat",
+      "Stir occasionally for about 20 minutes"
+    ]
+  },
+  {
+    "Id": 1,
+    "Name": "Burritos",
+    "ThumbnailUrl": "https://www.allrecipes.com/thmb/p1e_qhx-A0-21dZDxFyv1zBb-Zw=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/8538304_Chicken-Fajita-Burrito_thedailygourmet_4x3-d381424d6949448596ef3dc66ce5712b.jpg",
+    "Ingredients": [],
+    "Steps": []
+  },
+  {
+    "Id": 2,
+    "Name": "Salmon with avocado salsa",
+    "ThumbnailUrl": "https://i.ytimg.com/vi/oY3S6acQ9lE/maxresdefault.jpg",
+    "Ingredients": [],
+    "Steps": []
+  },
+  {
+    "Id": 3,
+    "Name": "Tex mex chicken and rice",
+    "ThumbnailUrl": "https://res.cloudinary.com/hksqkdlah/image/upload/ar_1:1,c_fill,dpr_2.0,f_auto,fl_lossy.progressive.strip_profile,g_faces:auto,q_auto:low,w_344/9252_sfs-tex-mex-skillet-supper-005-275466",
+    "Ingredients": [],
+    "Steps": []
+  },
+  {
+    "Id": 4,
+    "Name": "Mac & cheese",
+    "ThumbnailUrl": "https://www.lifeasastrawberry.com/wp-content/uploads/2019/11/Garlic-Mushroom-Mac-and-Cheese.jpg",
+    "Ingredients": [],
+    "Steps": []
+  },
+  {
+    "Id": 5,
+    "Name": "Banana bread muffins",
+    "ThumbnailUrl": "https://www.bunsenburnerbakery.com/wp-content/uploads/2020/02/banana-bread-muffins-26-square-720x720.jpg",
+    "Ingredients": [],
+    "Steps": []
+  },
+  {
+    "Id": 6,
+    "Name": "Pasta al pesto",
+    "ThumbnailUrl": "https://www.fattoincasadabenedetta.it/wp-content/uploads/2022/07/AdobeStock_235021478-scaled.jpg",
+    "Ingredients": [],
+    "Steps": []
+  },
+  {
+    "Id": 7,
+    "Name": "Mushrooms omelet",
+    "ThumbnailUrl": "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/06/mushroom-omelette-recipe.jpg",
+    "Ingredients": [],
+    "Steps": []
+  },
+  {
+    "Id": 8,
+    "Name": "Overnight oats",
+    "ThumbnailUrl": "https://detoxinista.com/wp-content/uploads/2021/05/banana-overnight-oats-recipe.jpg",
+    "Ingredients": [],
+    "Steps": []
+  }
+]
