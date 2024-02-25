@@ -1,43 +1,30 @@
 ﻿using Azure.Storage.Files.Shares;
+using Foodiy.Api.Configuration.Options;
 using Foodiy.Api.Models;
+using Microsoft.Extensions.Options;
 using System.Text.Json;
 
 namespace Foodiy.Api.Services;
 
 public class AzureRecipesProvider : IRecipesProvider
 {
-    private const string _configSectionName = "AzureStorage";
-    private readonly string _connectionString;
-    private readonly string _shareName;
+    private readonly AzureStorageOptions _configuration;
 
-    public AzureRecipesProvider(IConfiguration configuration)
+    public AzureRecipesProvider(IOptions<AzureStorageOptions> storageConfig)
     {
-        if (configuration == null)
-            throw new ArgumentNullException(nameof(configuration));
-
-        var section = configuration.GetSection(_configSectionName);
-
-        _connectionString = section.GetValue<string>("ConnectionString");
-
-        if (_connectionString == null)
-            throw new InvalidOperationException("Missing configuration entry for AzureStorage:ConnectionString");
-
-        _shareName = section.GetValue<string>("ShareName");
-
-        if (_shareName == null)
-            throw new InvalidOperationException("Missing configuration entry for AzureStorage:ShareName");
+        _configuration = storageConfig.Value;
     }
 
     public async Task<IEnumerable<RecipeDetailsModel>> GetRecipesAsync(CancellationToken cancellationToken = default)
     {
-        var fileShare = new ShareClient(_connectionString, _shareName);
+        var fileShare = new ShareClient(_configuration.ConnectionString, _configuration.ShareName);
 
         var directory = await fileShare.ExistsAsync(cancellationToken)
             ? fileShare.GetRootDirectoryClient()
             : throw new DirectoryNotFoundException(fileShare.Uri.ToString());
 
         var file = await directory.ExistsAsync(cancellationToken)
-            ? directory.GetFileClient("recipes.json")
+            ? directory.GetFileClient(_configuration.FileName)
             : throw new DirectoryNotFoundException(directory.Uri.ToString());
 
         var response = await file.ExistsAsync(cancellationToken)
