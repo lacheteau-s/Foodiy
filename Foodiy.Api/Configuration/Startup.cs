@@ -12,7 +12,8 @@ public static class Startup
 
         services.AddMemoryCache();
         services.AddSingleton<IRecipesService, RecipesService>();
-        services.AddSingleton<IRecipesProvider, InMemoryRecipesProvider>();
+        //services.AddSingleton<IRecipesProvider, InMemoryRecipesProvider>();
+        services.AddSingleton<IRecipesProvider, AzureRecipesProvider>();
 
         services.AddControllers(options =>
         {
