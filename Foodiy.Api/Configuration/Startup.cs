@@ -1,4 +1,5 @@
-﻿using Foodiy.Api.Services;
+﻿using Foodiy.Api.Configuration.Options;
+using Foodiy.Api.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Foodiy.Api.Configuration;
@@ -10,9 +11,15 @@ public static class Startup
         var services = builder.Services;
         // Add services to the container.
 
+        services
+            .AddOptions<AzureStorageOptions>()
+            .BindConfiguration(AzureStorageOptions.SectionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
         services.AddMemoryCache();
         services.AddSingleton<IRecipesService, RecipesService>();
-        services.AddSingleton<IRecipesProvider, InMemoryRecipesProvider>();
+        services.AddSingleton<IRecipesProvider, AzureRecipesProvider>();
 
         services.AddControllers(options =>
         {
