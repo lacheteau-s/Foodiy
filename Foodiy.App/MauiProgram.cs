@@ -37,6 +37,11 @@ public static class MauiProgram
 
 		services.AddSingleton<RecipeStore>();
 
+		services.AddHttpClient("FoodiyApi", httpClient =>
+		{
+			httpClient.BaseAddress = new Uri("http://10.0.2.2:5211");
+		});
+
 		return builder;
 	}
 }

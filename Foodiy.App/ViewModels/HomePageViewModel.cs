@@ -12,20 +12,22 @@ public partial class HomePageViewModel : ObservableObject
 {
     private readonly RecipeStore _recipeStore;
 
+    private readonly IHttpClientFactory _httpClientFactory;
+
     [ObservableProperty]
     private IEnumerable<RecipeModel> _recipes;
 
-    public HomePageViewModel(RecipeStore recipeStore)
+    public HomePageViewModel(RecipeStore recipeStore, IHttpClientFactory httpClientFactory)
     {
         _recipeStore = recipeStore;
         _recipes = Enumerable.Empty<RecipeModel>();
+        _httpClientFactory = httpClientFactory;
     }
 
     [RelayCommand]
     public async Task InitializeAsync()
     {
-        using var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri("http://10.0.2.2:5211");
+        using var httpClient = _httpClientFactory.CreateClient("FoodiyApi");
         var response = await httpClient.GetAsync("/api/recipes");
 
         if (response.IsSuccessStatusCode)
