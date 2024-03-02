@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Foodiy.App.Constants;
 using Foodiy.App.Helpers;
 using Foodiy.App.Models;
+using Foodiy.App.Services;
 using Foodiy.App.Stores;
 using System.Net.Http.Json;
 
@@ -12,30 +13,24 @@ public partial class HomePageViewModel : ObservableObject
 {
     private readonly RecipeStore _recipeStore;
 
-    private readonly IHttpClientFactory _httpClientFactory;
+    private readonly IFoodiyApi _api;
 
     [ObservableProperty]
     private IEnumerable<RecipeModel> _recipes;
 
-    public HomePageViewModel(RecipeStore recipeStore, IHttpClientFactory httpClientFactory)
+    public HomePageViewModel(RecipeStore recipeStore, IFoodiyApi api)
     {
         _recipeStore = recipeStore;
         _recipes = Enumerable.Empty<RecipeModel>();
-        _httpClientFactory = httpClientFactory;
+        _api = api;
     }
 
     [RelayCommand]
     public async Task InitializeAsync()
     {
-        using var httpClient = _httpClientFactory.CreateClient("FoodiyApi");
-        var response = await httpClient.GetAsync("/api/recipes");
-
-        if (response.IsSuccessStatusCode)
-        {
-            var content = await response.Content.ReadFromJsonAsync<IEnumerable<RecipeModel>>();
-            Recipes = content!; // TODO: null-check
-        }
-        //Recipes = await _recipeStore.GetRecipesAsync();
+        var recipes = await _api.GetRecipes();
+        
+        Recipes = recipes;
     }
 
     [RelayCommand]

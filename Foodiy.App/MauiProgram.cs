@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Maui;
 using Foodiy.App.Configuration;
+using Foodiy.App.Services;
 using Foodiy.App.Stores;
 using Foodiy.App.ViewModels;
 using Foodiy.App.Views;
+using Refit;
 
 namespace Foodiy.App;
 
@@ -37,7 +39,7 @@ public static class MauiProgram
 
 		services.AddSingleton<RecipeStore>();
 
-		services.AddHttpClient("FoodiyApi", httpClient =>
+		services.AddRefitClient<IFoodiyApi>().ConfigureHttpClient(httpClient =>
 		{
 			httpClient.BaseAddress = new Uri("http://10.0.2.2:5211");
 		});
