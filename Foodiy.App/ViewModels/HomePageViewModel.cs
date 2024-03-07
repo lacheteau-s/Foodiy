@@ -3,33 +3,38 @@ using CommunityToolkit.Mvvm.Input;
 using Foodiy.App.Constants;
 using Foodiy.App.Helpers;
 using Foodiy.App.Models;
-using Foodiy.App.Stores;
+using Foodiy.App.Services;
 
 namespace Foodiy.App.ViewModels;
 
 public partial class HomePageViewModel : ObservableObject
 {
-    private readonly RecipeStore _recipeStore;
+    private readonly IFoodiyApi _api;
 
     [ObservableProperty]
-    private IEnumerable<RecipeModel> _recipes;
+    private IEnumerable<RecipeSummaryModel> _recipes;
 
-    public HomePageViewModel(RecipeStore recipeStore)
+    public HomePageViewModel(IFoodiyApi api)
     {
-        _recipeStore = recipeStore;
-        _recipes = Enumerable.Empty<RecipeModel>();
+        _recipes = Enumerable.Empty<RecipeSummaryModel>();
+        _api = api;
     }
 
     [RelayCommand]
     public async Task InitializeAsync()
     {
-        Recipes = await _recipeStore.GetRecipesAsync();
+        // TODO: caching / local storage
+        var recipes = await _api.GetRecipes();
+        
+        Recipes = recipes;
     }
 
     [RelayCommand]
-    public async Task OpenRecipe(RecipeModel recipe)
+    public async Task OpenRecipe(RecipeSummaryModel recipeSummary)
     {
-        var param = new Dictionary<string, object> { [Parameters.RecipeModelParam] = recipe };
+        var recipeDetails = await _api.GetRecipe(recipeSummary.Id); // TODO: error management
+        // TODO: find a way to load from the details page
+        var param = new Dictionary<string, object> { [Parameters.RecipeDetailsModelParam] = recipeDetails };
 
         await NavigationHelper.NavigateTo<RecipePageViewModel>(param);
     }

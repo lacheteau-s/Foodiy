@@ -2,5 +2,5 @@
 
 public static class Parameters
 {
-    public const string RecipeModelParam = nameof(RecipeModelParam);
+    public const string RecipeDetailsModelParam = nameof(RecipeDetailsModelParam);
 }

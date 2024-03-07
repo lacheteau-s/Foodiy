@@ -28,7 +28,7 @@
         </CollectionView.ItemsLayout>
         
         <CollectionView.ItemTemplate>
-            <DataTemplate x:DataType="models:RecipeModel">
+            <DataTemplate x:DataType="models:RecipeSummaryModel">
                 <Border StrokeShape="RoundRectangle 7">
 
                     <Border.GestureRecognizers>
