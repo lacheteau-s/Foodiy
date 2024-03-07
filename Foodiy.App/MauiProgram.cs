@@ -1,7 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Foodiy.App.Configuration;
 using Foodiy.App.Services;
-using Foodiy.App.Stores;
 using Foodiy.App.ViewModels;
 using Foodiy.App.Views;
 using Refit;
@@ -36,8 +35,6 @@ public static class MauiProgram
 		services.AddSingleton<HomePageViewModel>();
 		services.AddTransient<RecipePage>();
 		services.AddTransient<RecipePageViewModel>();
-
-		services.AddSingleton<RecipeStore>();
 
 		services.AddRefitClient<IFoodiyApi>(new RefitSettings
 		{
