@@ -39,9 +39,16 @@ public static class MauiProgram
 
 		services.AddSingleton<RecipeStore>();
 
-		services.AddRefitClient<IFoodiyApi>().ConfigureHttpClient(httpClient =>
+		services.AddRefitClient<IFoodiyApi>(new RefitSettings
 		{
-			httpClient.BaseAddress = new Uri("http://10.0.2.2:5211");
+            // https://www.youtube.com/watch?v=D6HaMHw9hzc&ab_channel=AbhayPrince
+            // https://www.youtube.com/watch?v=-Wj1JYkgWNU&t=0s&ab_channel=AbhayPrince
+            // https://learn.microsoft.com/en-us/dotnet/maui/data-cloud/local-web-services?view=net-maui-8.0
+            HttpMessageHandlerFactory = AndroidHttpsMessageHandler.Get // TODO: only needed for debug?
+        })
+		.ConfigureHttpClient(httpClient =>
+		{
+			httpClient.BaseAddress = new Uri("https://10.0.2.2:7066");
 		});
 
 		return builder;

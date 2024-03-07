@@ -28,6 +28,7 @@ public partial class HomePageViewModel : ObservableObject
     [RelayCommand]
     public async Task InitializeAsync()
     {
+        // TODO: caching / local storage
         var recipes = await _api.GetRecipes();
         
         Recipes = recipes;
