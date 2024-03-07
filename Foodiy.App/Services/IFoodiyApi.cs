@@ -6,8 +6,8 @@ namespace Foodiy.App.Services;
 public interface IFoodiyApi
 {
     [Get("/api/recipes")]
-    Task<IEnumerable<RecipeModel>> GetRecipes();
+    Task<IEnumerable<RecipeSummaryModel>> GetRecipes();
 
     [Get("/api/recipes/{id}")]
-    Task<RecipeModel> GetRecipe(int id);
+    Task<RecipeDetailsModel> GetRecipe(int id);
 }

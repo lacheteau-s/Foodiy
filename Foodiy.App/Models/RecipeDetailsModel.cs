@@ -1,6 +1,7 @@
 ﻿namespace Foodiy.App.Models;
 
-public record RecipeModel(
+public record RecipeDetailsModel(
+    int Id,
     string Name,
     string ThumbnailUrl,
     IEnumerable<IngredientModel> Ingredients,

@@ -20,7 +20,7 @@ public partial class RecipePageViewModel : ObservableObject, IQueryAttributable
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        var recipe = query[Parameters.RecipeModelParam] as RecipeModel;
+        var recipe = query[Parameters.RecipeDetailsModelParam] as RecipeDetailsModel;
 
         if (recipe != null)
         {

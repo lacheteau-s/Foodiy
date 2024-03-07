@@ -12,11 +12,11 @@ public partial class HomePageViewModel : ObservableObject
     private readonly IFoodiyApi _api;
 
     [ObservableProperty]
-    private IEnumerable<RecipeModel> _recipes;
+    private IEnumerable<RecipeSummaryModel> _recipes;
 
     public HomePageViewModel(IFoodiyApi api)
     {
-        _recipes = Enumerable.Empty<RecipeModel>();
+        _recipes = Enumerable.Empty<RecipeSummaryModel>();
         _api = api;
     }
 
@@ -30,9 +30,11 @@ public partial class HomePageViewModel : ObservableObject
     }
 
     [RelayCommand]
-    public async Task OpenRecipe(RecipeModel recipe)
+    public async Task OpenRecipe(RecipeSummaryModel recipeSummary)
     {
-        var param = new Dictionary<string, object> { [Parameters.RecipeModelParam] = recipe };
+        var recipeDetails = await _api.GetRecipe(recipeSummary.Id); // TODO: error management
+        // TODO: find a way to load from the details page
+        var param = new Dictionary<string, object> { [Parameters.RecipeDetailsModelParam] = recipeDetails };
 
         await NavigationHelper.NavigateTo<RecipePageViewModel>(param);
     }
